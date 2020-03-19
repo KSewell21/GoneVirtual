@@ -1,0 +1,22 @@
+import pygame
+
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+done = False
+is_pink = True
+
+while not done:
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                        done = True
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                        is_pink = not is_pink
+                        
+        if is_pink: color = (254, 127, 156)
+        else: color = (255, 165, 0)
+        screen.fill((0, 128, 170))
+                
+        pygame.draw.rect(screen, color, pygame.Rect(30, 30, 60, 60))
+       
+        pygame.display.flip()
+        
