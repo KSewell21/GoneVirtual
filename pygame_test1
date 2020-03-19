@@ -1,0 +1,54 @@
+import pygame
+
+pygame.init()
+screen = pygame.display.set_mode((400, 300))
+done = False
+is_blue = True
+rect_y = 60
+y_dir = 1
+speed_y = 0
+speed_x = 1
+rect_x = 30
+x_dir = 1
+
+while not done:
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                        done = True
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+                        is_blue = not is_blue
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+                        if speed_y < 5:
+                            speed_y += 1
+                if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+                        if speed_y > 0:
+                            speed_y -= 1
+                        
+        if is_blue: color = (0, 128, 255)
+        else: color = (255, 100, 0)
+        
+        screen.fill((0, 0, 0))
+        
+        
+        rect_y += y_dir * speed_y
+        
+        if rect_y >= 240:
+            y_dir = -1
+            is_blue = not is_blue
+        if rect_y <= 0:
+            y_dir = 1
+            is_blue = not is_blue
+        
+        rect_x += x_dir * speed_x
+        
+        if rect_x >= 370:
+            x_dir = -1
+            is_blue = not is_blue
+        if rect_x <= 0:
+            x_dir = 1
+            is_blue = not is_blue
+            
+        pygame.draw.rect(screen, color, pygame.Rect(rect_x, rect_y, 60, 60))
+        
+        pygame.display.flip()
+        
