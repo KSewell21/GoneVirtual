@@ -12,7 +12,7 @@ rect_x = 30
 x_dir = 1
 
 while not done:
-        for event in pygame.event.get():
+          for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                         done = True
                 if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
